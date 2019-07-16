@@ -2,13 +2,13 @@
 #include <iostream>
 
 Particle::Particle()
-    : x(200), y(200), fov(360)
+    : x(200), y(200), fov(40)
 {
-    n_rays = (int)(fov / 10);
+    n_rays = (int)(fov / 1);
     rays = new Ray[n_rays];
     int c = 0;
 
-    for (float i = 0; i < fov; i += 10.0)
+    for (float i = -fov/2; i < fov/2; i += 1)
         rays[c++] = Ray(x, y, i);
 }
 
@@ -44,14 +44,15 @@ void Particle::Update(float x_, float y_)
 
 }
 
-void Particle::Look(std::vector<Boundary> &walls, Renderer *r)
+std::vector<float> Particle::Look(std::vector<Boundary> &walls, Renderer *r)
 {
+    std::vector<float> rv(n_rays);
     for (int i = 0; i < n_rays; i++)
     {
         float record = INFINITY;
         Point winner = {-1, -1};
 
-        for (int j = 0; j < 5; j++)
+        for (int j = 0; j < walls.size(); j++)
         {
             Point pt = rays[i].Cast(walls[j]);
             float d;
@@ -68,6 +69,7 @@ void Particle::Look(std::vector<Boundary> &walls, Renderer *r)
         
         if (PointExist(winner))
             r->Line(x, y, winner.x, winner.y, {1, 1, 1, 1});
-    
+        rv[i] = record;    
     }
+    return rv;
 }

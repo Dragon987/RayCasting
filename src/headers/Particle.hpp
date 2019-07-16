@@ -24,5 +24,5 @@ public:
     void Show(Renderer *r);
     void Update(float x, float y);
     void Look(Boundary &wall, Renderer *r);
-    void Look(std::vector<Boundary> &walls, Renderer *r);
+    std::vector<float> Look(std::vector<Boundary> &walls, Renderer *r);
 };
