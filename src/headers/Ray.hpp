@@ -27,6 +27,7 @@ public:
     Ray(float x, float y);
     Ray(float x, float y, float angle);
     Ray();
+    inline ~Ray() {};
     void Show(Renderer *r);
     void LookAt(float x, float y);
     Point Cast(const Boundary &wall);

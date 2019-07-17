@@ -27,4 +27,5 @@ public:
     void Look(Boundary &wall, Renderer *r);
     std::vector<float> Look(std::vector<Boundary> &walls, Renderer *r);
     void Rotate(float amount);
+    inline ~Particle() { delete[] rays; };
 };

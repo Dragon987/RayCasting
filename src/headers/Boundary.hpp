@@ -13,6 +13,7 @@ public:
 
 public:
     Boundary(float x1, float y1, float x2, float y2);
+    inline ~Boundary() {};
     inline Boundary() {};
     void Show(Renderer *r);
 };
