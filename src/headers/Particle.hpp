@@ -11,6 +11,7 @@
 class Particle
 {
 private:
+    float angleLow, angleHigh;
 
 private:
 
@@ -25,4 +26,5 @@ public:
     void Update(float x, float y);
     void Look(Boundary &wall, Renderer *r);
     std::vector<float> Look(std::vector<Boundary> &walls, Renderer *r);
+    void Rotate(float amount);
 };

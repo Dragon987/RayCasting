@@ -25,10 +25,10 @@ int main()
 
     for (int i = 0; i < 5; i++)
     {
-        int x1 = __random__(0, 400);
-        int y1 = __random__(0, 400);
-        int x2 = __random__(0, 400);
-        int y2 = __random__(0, 400);
+        int x1 = __random__(1, 399);
+        int y1 = __random__(1, 399);
+        int x2 = __random__(1, 399);
+        int y2 = __random__(1, 399);
         walls.push_back(Boundary(x1, y1, x2, y2));
     }
 
@@ -47,6 +47,11 @@ int main()
 
         r.GetMousePos((double *)&x, (double *)&y);
         p.Update(x, y);
+
+        if (r.GetKey(KEY_LEFT) == GLFW_PRESS)
+            p.Rotate(-0.1);
+        if (r.GetKey(KEY_RIGHT) == GLFW_PRESS)
+            p.Rotate(0.1);
 
         auto scene = p.Look(walls, &r);
 

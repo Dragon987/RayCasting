@@ -8,6 +8,9 @@ Particle::Particle()
     rays = new Ray[n_rays];
     int c = 0;
 
+    angleLow = -fov / 2;
+    angleHigh = -angleLow;
+
     for (float i = -fov/2; i < fov/2; i += 1)
         rays[c++] = Ray(x, y, i);
 }
@@ -72,4 +75,14 @@ std::vector<float> Particle::Look(std::vector<Boundary> &walls, Renderer *r)
         rv[i] = record;    
     }
     return rv;
+}
+
+void Particle::Rotate(float amount)
+{
+    angleLow += amount;
+    angleHigh += amount;
+
+    int c = 0;
+    for (float i = angleLow; i < angleHigh; i += 1)
+        rays[c++] = Ray(x, y, i);
 }
